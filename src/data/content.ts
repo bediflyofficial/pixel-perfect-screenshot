@@ -1,5 +1,9 @@
 import founderAsset from '@/assets/founder.png.asset.json';
 import fatemaAsset from '@/assets/fatema-yellow.png.asset.json';
+import class1 from '@/assets/class-image-9.png.asset.json';
+import class2 from '@/assets/class-image-10.png.asset.json';
+import class3 from '@/assets/class-image-11.png.asset.json';
+import class4 from '@/assets/class-image-12.png.asset.json';
 import profiAsset from '@/assets/profi.png.asset.json';
 import communityAsset from '@/assets/community.jpg.asset.json';
 import {
@@ -271,10 +275,10 @@ export const FAQS: Faq[] = [
 
 export type GalleryItem = { src: string; alt: string };
 export const GALLERY: GalleryItem[] = [
-  {
-    src: fatemaAsset.url,
-    alt: 'Live one-on-one EDUVATEE spoken English session',
-  },
+  { src: class1.url, alt: 'EDUVATEE live group English class on Zoom' },
+  { src: class2.url, alt: 'One-on-one EDUVATEE spoken English session' },
+  { src: class3.url, alt: 'Students practising speaking in a live EDUVATEE batch' },
+  { src: class4.url, alt: 'EDUVATEE trainer coaching a learner live' },
 ];
 
 export const HERO_IMG = founderAsset.url;
