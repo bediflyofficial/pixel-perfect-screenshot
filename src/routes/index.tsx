@@ -19,7 +19,7 @@ import { LeadModal } from "@/components/LeadModal";
 
 const TITLE = "EDUVATEE — Live 1-on-1 Spoken English & IELTS Coaching";
 const DESCRIPTION =
-  "Personalised live English fluency and IELTS coaching with expert tutors. Flexible 1, 3 and 6-month plans. Book a ₹99 demo class today.";
+  "Personalised live English fluency and IELTS coaching with expert tutors. Flexible 1, 3 and 6-month plans. Book your demo class today.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,54 +37,55 @@ export const Route = createFileRoute("/")({
 
 type ModalState = { open: boolean; interest: string; source: string };
 
-const DEMO: ModalState = {
-  open: false,
-  interest: "₹99 Demo Class",
-  source: "demo",
-};
-
 function Index() {
-  const [modal, setModal] = useState<ModalState>(DEMO);
+  const [modal, setModal] = useState<ModalState>({
+    open: false,
+    interest: "",
+    source: "packages",
+  });
 
-  const openDemo = (interest: string = "₹99 Demo Class") =>
-    setModal({ open: true, interest, source: "demo" });
+  // Demo-class CTAs scroll to the booking form in the hero.
+  const scrollToDemoForm = () => {
+    const el = document.getElementById("demo-form");
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    const firstInput = el.querySelector<HTMLInputElement>("input");
+    window.setTimeout(() => firstInput?.focus({ preventScroll: true }), 700);
+  };
+
+  // Package / plan CTAs open the enquiry modal.
+  const openPlan = (interest: string) =>
+    setModal({ open: true, interest, source: "packages" });
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[var(--bg)]">
-      <Navbar onBookDemo={() => openDemo()} />
+      <Navbar onBookDemo={scrollToDemoForm} />
       <main>
-        <Hero onBookDemo={() => openDemo()} />
+        <Hero onBookDemo={scrollToDemoForm} />
         <Features />
-        <Packages onBookDemo={(interest) => openDemo(interest)} />
-        <DemoBanner onBookDemo={() => openDemo()} />
-        <Community onBookDemo={() => openDemo()} />
-        <IELTS onBookDemo={(interest) => openDemo(interest)} />
-        <Founder onBookDemo={() => openDemo()} />
-        <Tutors onBookDemo={() => openDemo()} />
+        <Packages onBookDemo={(interest) => openPlan(interest)} />
+        <DemoBanner onBookDemo={scrollToDemoForm} />
+        <Community onBookDemo={scrollToDemoForm} />
+        <IELTS onBookDemo={(interest) => openPlan(interest)} />
+        <Founder onBookDemo={scrollToDemoForm} />
+        <Tutors onBookDemo={scrollToDemoForm} />
         <Reviews />
         <Gallery />
         <Faq />
         <Contact />
       </main>
-      <Footer onBookDemo={() => openDemo()} />
-      <FloatingCTA onBookDemo={() => openDemo()} />
+      <Footer onBookDemo={scrollToDemoForm} />
+      <FloatingCTA onBookDemo={scrollToDemoForm} />
 
       <LeadModal
         open={modal.open}
         onClose={() => setModal((m) => ({ ...m, open: false }))}
-        title={
-          modal.interest === "₹99 Demo Class"
-            ? "Book your ₹99 demo class"
-            : "Reserve your spot"
-        }
-        subtitle={
-          modal.interest === "₹99 Demo Class"
-            ? "Experience a real class before you commit."
-            : `Selected: ${modal.interest}`
-        }
+        title="Reserve your spot"
+        subtitle={modal.interest ? `Selected: ${modal.interest}` : undefined}
         interest={modal.interest}
         source={modal.source}
       />
     </div>
   );
 }
+
