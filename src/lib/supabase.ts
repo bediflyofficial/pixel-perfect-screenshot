@@ -1,4 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
+import { sendLeadToSheet } from "@/lib/sheets.functions";
+
 
 export type Lead = {
   name: string;
