@@ -16,19 +16,31 @@ export const sendLeadToSheet = createServerFn({ method: "POST" })
     const url = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
     if (!url) return { ok: false as const };
 
-    try {
-      const res = await fetch(url, {
+    const payload = JSON.stringify({
+      name: data.name,
+      phone: data.phone,
+      email: data.email ?? "",
+      interest: data.interest ?? "",
+      message: data.message ?? "",
+      source: data.source ?? "landing",
+    });
+
+    // Apps Script /exec answers with a 302 to googleusercontent; fetch would
+    // downgrade the redirect to GET, so re-POST to the Location manually.
+    const post = (target: string, redirect: RequestRedirect) =>
+      fetch(target, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.name,
-          phone: data.phone,
-          email: data.email ?? "",
-          interest: data.interest ?? "",
-          message: data.message ?? "",
-          source: data.source ?? "landing",
-        }),
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: payload,
+        redirect,
       });
+
+    try {
+      let res = await post(url, "manual");
+      const location = res.headers.get("location");
+      if (res.status >= 300 && res.status < 400 && location) {
+        res = await post(location, "follow");
+      }
       return { ok: res.ok };
     } catch {
       return { ok: false as const };
