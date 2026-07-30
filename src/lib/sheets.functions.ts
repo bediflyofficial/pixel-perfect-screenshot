@@ -25,23 +25,17 @@ export const sendLeadToSheet = createServerFn({ method: "POST" })
       source: data.source ?? "landing",
     });
 
-    // Apps Script /exec answers with a 302 to googleusercontent; fetch would
-    // downgrade the redirect to GET, so re-POST to the Location manually.
-    const post = (target: string, redirect: RequestRedirect) =>
-      fetch(target, {
+    // Apps Script runs doPost at /exec and then 302s to a googleusercontent
+    // result page. The 302 itself means the script executed, so treat it as
+    // success and don't follow (the result page rejects POST).
+    try {
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: payload,
-        redirect,
+        redirect: "manual",
       });
-
-    try {
-      let res = await post(url, "manual");
-      const location = res.headers.get("location");
-      if (res.status >= 300 && res.status < 400 && location) {
-        res = await post(location, "follow");
-      }
-      return { ok: res.ok };
+      return { ok: res.ok || (res.status >= 300 && res.status < 400) };
     } catch {
       return { ok: false as const };
     }
