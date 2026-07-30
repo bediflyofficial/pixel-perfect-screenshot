@@ -1,9 +1,53 @@
-import { Star, Play, Sparkles, ShieldCheck, Users } from 'lucide-react';
+import { useState, type FormEvent } from 'react';
+import {
+  Star,
+  ShieldCheck,
+  Users,
+  Loader2,
+  CheckCircle2,
+  Phone,
+  Mail,
+  ArrowRight,
+} from 'lucide-react';
 import { STATS, HERO_IMG } from '@/data/content';
 import { useReveal } from '@/hooks/useReveal';
+import { submitLead } from '@/lib/supabase';
+
+type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
   const ref = useReveal<HTMLElement>();
+  const [status, setStatus] = useState<Status>('idle');
+  const [errMsg, setErrMsg] = useState('');
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus('submitting');
+    setErrMsg('');
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const age = String(data.get('age') ?? '').trim();
+    const city = String(data.get('city') ?? '').trim();
+    try {
+      await submitLead({
+        name: String(data.get('name') ?? '').trim(),
+        phone: String(data.get('phone') ?? '').trim(),
+        email: String(data.get('email') ?? '').trim() || null,
+        message: `Age: ${age} • City: ${city}`,
+        interest: '₹99 Demo Class',
+        source: 'hero-form',
+      });
+      setStatus('success');
+      form.reset();
+    } catch (err) {
+      setStatus('error');
+      setErrMsg(
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong. Please try again.',
+      );
+    }
+  }
 
   return (
     <section
@@ -15,12 +59,9 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
       <div className="absolute -top-32 right-[-10%] -z-10 h-[28rem] w-[28rem] rounded-full bg-brand-200/50 blur-3xl" />
       <div className="absolute top-40 left-[-15%] -z-10 h-[24rem] w-[24rem] rounded-full bg-gold-200/40 blur-3xl" />
 
-      <div className="container-px grid items-center gap-12 pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:pb-28">
+      <div className="container-px grid items-start gap-12 pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:pb-28">
         <div className="reveal">
-          <span className="eyebrow">
-            <Sparkles className="h-3.5 w-3.5" /> Live 1-on-1 English coaching
-          </span>
-          <h1 className="mt-5 text-balance text-4xl font-extrabold leading-[1.05] text-ink-900 sm:text-5xl lg:text-6xl">
+          <h1 className="text-balance text-4xl font-extrabold leading-[1.05] text-ink-900 sm:text-5xl lg:text-6xl">
             Master Fluent English with{' '}
             <span className="relative whitespace-nowrap text-brand-600">
               EDUVATEE
@@ -47,16 +88,7 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
             supportive approach — so you speak with confidence, not hesitation.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <button onClick={onBookDemo} className="btn-gold">
-              <Play className="h-4 w-4" /> Book ₹99 Demo Class
-            </button>
-            <a href="#packages" className="btn-ghost">
-              Explore packages
-            </a>
-          </div>
-
-          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ink-800/70">
+          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ink-800/70">
             <div className="flex items-center gap-1.5">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
@@ -74,21 +106,18 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
               <span>12,000+ students coached</span>
             </div>
           </div>
-        </div>
 
-        <div className="reveal relative">
-          <div className="relative mx-auto max-w-md lg:max-w-none">
-            <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand-200/60 to-gold-200/50 blur-2xl" />
+          <div className="relative mt-10 max-w-xl">
             <div className="overflow-hidden rounded-[2rem] border-4 border-white bg-white shadow-lift">
               <img
                 src={HERO_IMG}
                 alt="Student attending a live online English class"
-                className="aspect-[5/6] w-full object-cover"
+                className="aspect-[5/4] w-full object-cover"
                 loading="eager"
               />
             </div>
 
-            <div className="absolute -left-4 top-8 animate-float rounded-2xl border border-black/5 bg-white p-3 shadow-lift sm:-left-8">
+            <div className="absolute -left-2 top-6 animate-float rounded-2xl border border-black/5 bg-white p-3 shadow-lift sm:-left-6">
               <div className="flex items-center gap-2">
                 <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-50 text-brand-600">
                   <ShieldCheck className="h-5 w-5" />
@@ -103,22 +132,150 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
                 </div>
               </div>
             </div>
-
-            <div className="absolute -right-3 bottom-10 animate-float rounded-2xl border border-black/5 bg-white p-3 shadow-lift [animation-delay:1.5s] sm:-right-6">
-              <div className="flex items-center gap-2">
-                <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-green-50 text-green-600">
-                  <span className="absolute inset-0 rounded-xl bg-green-400/40 animate-pulse-ring" />
-                  <span className="relative h-2.5 w-2.5 rounded-full bg-green-500" />
-                </span>
-                <div className="leading-tight">
-                  <p className="text-xs font-semibold text-ink-900">Live now</p>
-                  <p className="text-[11px] text-ink-800/60">
-                    1-on-1 session active
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
+        </div>
+
+        <div className="reveal lg:sticky lg:top-28">
+          <div className="overflow-hidden rounded-[2rem] border border-black/5 bg-white shadow-lift">
+            <div className="bg-gradient-to-br from-brand-600 to-brand-800 px-6 py-6 text-white sm:px-8">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-100">
+                Limited seats available
+              </span>
+              <h2 className="mt-2 text-2xl font-extrabold sm:text-3xl">
+                Book your ₹99 Demo Class
+              </h2>
+              <p className="mt-1 text-sm text-brand-100">
+                Experience a real class before you commit — no pressure.
+              </p>
+            </div>
+
+            {status === 'success' ? (
+              <div className="px-6 py-12 text-center sm:px-8">
+                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">
+                  <CheckCircle2 className="h-8 w-8" />
+                </div>
+                <h3 className="mt-5 text-xl font-bold text-ink-900">
+                  Request received!
+                </h3>
+                <p className="mx-auto mt-2 max-w-sm text-sm text-ink-800/70">
+                  Our team will call you shortly to confirm your demo slot.
+                </p>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="btn-ghost mt-6"
+                >
+                  Book another slot
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="px-6 py-6 sm:px-8">
+                <div className="grid gap-4">
+                  <HeroField label="Full name" htmlFor="hero-name" required>
+                    <input
+                      id="hero-name"
+                      name="name"
+                      required
+                      autoComplete="name"
+                      maxLength={100}
+                      placeholder="e.g. Riya Sharma"
+                      className="lead-input"
+                    />
+                  </HeroField>
+                  <HeroField
+                    label="Phone / WhatsApp"
+                    htmlFor="hero-phone"
+                    required
+                  >
+                    <input
+                      id="hero-phone"
+                      name="phone"
+                      type="tel"
+                      required
+                      autoComplete="tel"
+                      maxLength={20}
+                      placeholder="+91 98765 43210"
+                      className="lead-input"
+                    />
+                  </HeroField>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <HeroField label="Age" htmlFor="hero-age" required>
+                      <input
+                        id="hero-age"
+                        name="age"
+                        type="number"
+                        min={5}
+                        max={99}
+                        required
+                        placeholder="e.g. 25"
+                        className="lead-input"
+                      />
+                    </HeroField>
+                    <HeroField label="City" htmlFor="hero-city" required>
+                      <input
+                        id="hero-city"
+                        name="city"
+                        required
+                        maxLength={60}
+                        placeholder="e.g. Mumbai"
+                        className="lead-input"
+                      />
+                    </HeroField>
+                  </div>
+                  <HeroField label="Email" htmlFor="hero-email" optional>
+                    <input
+                      id="hero-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      maxLength={255}
+                      placeholder="you@email.com"
+                      className="lead-input"
+                    />
+                  </HeroField>
+                </div>
+
+                {status === 'error' && (
+                  <p className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+                    {errMsg}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === 'submitting'}
+                  className="btn-gold mt-5 w-full text-base"
+                >
+                  {status === 'submitting' ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" /> Submitting…
+                    </>
+                  ) : (
+                    <>
+                      Book my ₹99 Demo Class
+                      <ArrowRight className="h-4 w-4" />
+                    </>
+                  )}
+                </button>
+
+                <p className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-ink-800/60">
+                  <span className="inline-flex items-center gap-1">
+                    <Phone className="h-3.5 w-3.5" /> We'll call you back within
+                    24 hours
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <Mail className="h-3.5 w-3.5" /> No spam, ever
+                  </span>
+                </p>
+              </form>
+            )}
+          </div>
+
+          <button
+            onClick={onBookDemo}
+            className="mt-4 w-full text-center text-sm font-semibold text-brand-700 underline-offset-4 hover:underline"
+          >
+            Prefer to talk first? Request a callback
+          </button>
         </div>
       </div>
 
@@ -135,5 +292,32 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
         </div>
       </div>
     </section>
+  );
+}
+
+function HeroField({
+  label,
+  htmlFor,
+  required,
+  optional,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  required?: boolean;
+  optional?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <label htmlFor={htmlFor} className="block">
+      <span className="mb-1.5 block text-sm font-medium text-ink-900">
+        {label}
+        {required && <span className="ml-0.5 text-red-500">*</span>}
+        {optional && (
+          <span className="ml-1 font-normal text-ink-800/50">(optional)</span>
+        )}
+      </span>
+      {children}
+    </label>
   );
 }
