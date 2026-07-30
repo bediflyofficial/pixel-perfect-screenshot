@@ -96,7 +96,7 @@ export function Footer({ onBookDemo }: { onBookDemo: () => void }) {
                   onClick={onBookDemo}
                   className="transition hover:text-brand-300"
                 >
-                  ₹99 Demo Class
+                  Demo Class
                 </button>
               </li>
               <li>

@@ -24,7 +24,7 @@ export function FloatingCTA({ onBookDemo }: { onBookDemo: () => void }) {
             Call
           </a>
           <button onClick={onBookDemo} className="btn-gold flex-[2]">
-            Book ₹99 Demo
+            Book Your Demo Class
           </button>
         </div>
       </div>

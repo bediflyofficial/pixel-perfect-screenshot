@@ -29,7 +29,7 @@ export function DemoBanner({ onBookDemo }: { onBookDemo: () => void }) {
               onClick={onBookDemo}
               className="btn-gold group flex-shrink-0 text-base"
             >
-              Book demo class
+              Book Your Demo Class
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
           </div>

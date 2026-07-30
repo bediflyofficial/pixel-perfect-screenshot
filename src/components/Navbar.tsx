@@ -36,7 +36,7 @@ export function Navbar({ onBookDemo }: { onBookDemo: () => void }) {
               <Phone className="h-4 w-4" /> Call
             </a>
             <button onClick={onBookDemo} className="btn-gold">
-              Book ₹99 Demo
+              Book Your Demo Class
             </button>
           </div>
 
@@ -71,7 +71,7 @@ export function Navbar({ onBookDemo }: { onBookDemo: () => void }) {
               }}
               className="btn-gold mt-3 w-full"
             >
-              Book ₹99 Demo
+              Book Your Demo Class
             </button>
           </div>
         )}
