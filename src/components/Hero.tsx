@@ -1,9 +1,16 @@
 import { Star, Play, Sparkles, ShieldCheck, Users } from 'lucide-react';
 import { STATS, HERO_IMG } from '@/data/content';
+import { useReveal } from '@/hooks/useReveal';
 
 export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
+  const ref = useReveal<HTMLElement>();
+
   return (
-    <section id="home" className="relative overflow-hidden pt-28 sm:pt-36">
+    <section
+      id="home"
+      ref={ref}
+      className="relative overflow-hidden pt-28 sm:pt-36"
+    >
       <div className="absolute inset-0 -z-10 bg-grid [mask-image:radial-gradient(ellipse_at_top,#000_30%,transparent_75%)]" />
       <div className="absolute -top-32 right-[-10%] -z-10 h-[28rem] w-[28rem] rounded-full bg-brand-200/50 blur-3xl" />
       <div className="absolute top-40 left-[-15%] -z-10 h-[24rem] w-[24rem] rounded-full bg-gold-200/40 blur-3xl" />
