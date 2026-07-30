@@ -21,4 +21,20 @@ export async function submitLead(lead: Lead) {
     source: lead.source ?? "landing",
   });
   if (error) throw error;
+
+  // Mirror the lead into the Google Sheet (non-blocking failure)
+  try {
+    await sendLeadToSheet({
+      data: {
+        name: lead.name,
+        phone: lead.phone,
+        email: lead.email ?? "",
+        interest: lead.interest ?? "",
+        message: lead.message ?? "",
+        source: lead.source ?? "landing",
+      },
+    });
+  } catch {
+    // ignore sheet errors so the user still sees success
+  }
 }
