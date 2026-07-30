@@ -1,5 +1,6 @@
 import founderAsset from '@/assets/founder.png.asset.json';
-import fatemaAsset from '@/assets/fatema.jpg.asset.json';
+import fatemaAsset from '@/assets/fatema-yellow.png.asset.json';
+import profiAsset from '@/assets/profi.png.asset.json';
 import communityAsset from '@/assets/community.jpg.asset.json';
 import {
   Video,
