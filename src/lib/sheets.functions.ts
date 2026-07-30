@@ -16,20 +16,26 @@ export const sendLeadToSheet = createServerFn({ method: "POST" })
     const url = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
     if (!url) return { ok: false as const };
 
+    const payload = JSON.stringify({
+      name: data.name,
+      phone: data.phone,
+      email: data.email ?? "",
+      interest: data.interest ?? "",
+      message: data.message ?? "",
+      source: data.source ?? "landing",
+    });
+
+    // Apps Script runs doPost at /exec and then 302s to a googleusercontent
+    // result page. The 302 itself means the script executed, so treat it as
+    // success and don't follow (the result page rejects POST).
     try {
       const res = await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.name,
-          phone: data.phone,
-          email: data.email ?? "",
-          interest: data.interest ?? "",
-          message: data.message ?? "",
-          source: data.source ?? "landing",
-        }),
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: payload,
+        redirect: "manual",
       });
-      return { ok: res.ok };
+      return { ok: res.ok || (res.status >= 300 && res.status < 400) };
     } catch {
       return { ok: false as const };
     }
