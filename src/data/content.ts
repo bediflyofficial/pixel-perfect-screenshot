@@ -1,5 +1,6 @@
 import founderAsset from '@/assets/founder.png.asset.json';
-import fatemaAsset from '@/assets/fatema.jpg.asset.json';
+import fatemaAsset from '@/assets/fatema-yellow.png.asset.json';
+import profiAsset from '@/assets/profi.png.asset.json';
 import communityAsset from '@/assets/community.jpg.asset.json';
 import {
   Video,
@@ -177,7 +178,7 @@ export const TUTORS: Tutor[] = [
     name: 'Ms. Profi',
     role: 'Spoken English Trainer',
     note: 'Trained 800+ students',
-    img: '',
+    img: profiAsset.url,
   },
   {
     name: 'Ms. Fatema',
