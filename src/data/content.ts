@@ -1,10 +1,5 @@
 import founderAsset from '@/assets/founder.png.asset.json';
-import profiAsset from '@/assets/profi.png.asset.json';
 import fatemaAsset from '@/assets/fatema.jpg.asset.json';
-import class1 from '@/assets/class1.png.asset.json';
-import class2 from '@/assets/class2.png.asset.json';
-import class3 from '@/assets/class3.png.asset.json';
-import class5 from '@/assets/class5.png.asset.json';
 import {
   Video,
   UserRound,
@@ -181,7 +176,7 @@ export const TUTORS: Tutor[] = [
     name: 'Ms. Profi',
     role: 'Spoken English Trainer',
     note: 'Trained 800+ students',
-    img: profiAsset.url,
+    img: '',
   },
   {
     name: 'Ms. Fatema',
@@ -272,15 +267,16 @@ export const FAQS: Faq[] = [
   },
 ];
 
-export const GALLERY = [
-  { src: class1.url, alt: 'Live Eduvatee group session with students on video call' },
-  { src: class5.url, alt: 'One-on-one spoken English session in progress' },
-  { src: class3.url, alt: 'Eduvatee learners practising speaking in a live class' },
-  { src: class2.url, alt: 'Personalised online coaching session with a tutor' },
+export type GalleryItem = { src: string; alt: string };
+export const GALLERY: GalleryItem[] = [
+  {
+    src: fatemaAsset.url,
+    alt: 'Live one-on-one EDUVATEE spoken English session',
+  },
 ];
 
 export const HERO_IMG = founderAsset.url;
-export const COMMUNITY_IMG = class1.url;
+export const COMMUNITY_IMG = fatemaAsset.url;
 export const FOUNDER_IMG = founderAsset.url;
 
 export const CONTACTS = {
