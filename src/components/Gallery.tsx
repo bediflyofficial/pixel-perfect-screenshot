@@ -50,19 +50,20 @@ export function Gallery() {
             if (Math.abs(delta) > 40) go(delta < 0 ? 1 : -1);
           }}
         >
-          <div className="overflow-hidden rounded-[2rem] border border-black/5 bg-white shadow-lift">
+          <div className="overflow-hidden rounded-[2rem] border border-black/5 bg-ink-900 shadow-lift">
             <div
               className="flex transition-transform duration-700 ease-out"
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
               {GALLERY.map((item, i) => (
-                <img
-                  key={item.src}
-                  src={item.src}
-                  alt={item.alt}
-                  className="aspect-[16/9] w-full flex-shrink-0 object-cover"
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                />
+                <div key={item.src} className="w-full flex-shrink-0">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="aspect-[16/9] w-full object-contain"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                </div>
               ))}
             </div>
           </div>
