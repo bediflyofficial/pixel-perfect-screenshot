@@ -198,53 +198,53 @@
   }
 }
 
-@layer components {
-  .container-px {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
-  }
-  .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-700;
-  }
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-300/50 disabled:cursor-not-allowed disabled:opacity-60;
-  }
-  .btn-primary {
-    @apply btn bg-brand-600 text-white shadow-soft hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-lift;
-  }
-  .btn-gold {
-    @apply btn bg-gold-400 text-ink-900 shadow-soft hover:-translate-y-0.5 hover:bg-gold-300 hover:shadow-lift;
-  }
-  .btn-ghost {
-    @apply btn border border-ink-900/15 bg-white/70 text-ink-900 backdrop-blur hover:border-brand-300 hover:bg-white;
-  }
-  .btn-dark {
-    @apply btn bg-ink-900 text-white shadow-soft hover:-translate-y-0.5 hover:bg-ink-800 hover:shadow-lift;
-  }
-  .card {
-    @apply rounded-3xl border border-black/5 bg-white shadow-soft;
-  }
-  .section-pad {
-    @apply py-20 sm:py-28;
-  }
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition:
-      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
-  }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-  }
-  .lead-input {
-    @apply w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-ink-900 transition placeholder:text-ink-800/40 focus:border-brand-400 focus:outline-none focus:ring-4 focus:ring-brand-200/40;
-  }
-  .dark-input {
-    @apply w-full rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white transition placeholder:text-brand-100/40 focus:border-brand-400/60 focus:outline-none focus:ring-4 focus:ring-brand-400/20;
-  }
+@utility container-px {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
 }
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-700;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-300/50 disabled:cursor-not-allowed disabled:opacity-60;
+}
+@utility btn-primary {
+  @apply btn bg-brand-600 text-white shadow-soft hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-lift;
+}
+@utility btn-gold {
+  @apply btn bg-gold-400 text-ink-900 shadow-soft hover:-translate-y-0.5 hover:bg-gold-300 hover:shadow-lift;
+}
+@utility btn-ghost {
+  @apply btn border border-ink-900/15 bg-white/70 text-ink-900 backdrop-blur hover:border-brand-300 hover:bg-white;
+}
+@utility btn-dark {
+  @apply btn bg-ink-900 text-white shadow-soft hover:-translate-y-0.5 hover:bg-ink-800 hover:shadow-lift;
+}
+@utility card {
+  @apply rounded-3xl border border-black/5 bg-white shadow-soft;
+}
+@utility section-pad {
+  @apply py-20 sm:py-28;
+}
+@utility lead-input {
+  @apply w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-ink-900 transition placeholder:text-ink-800/40 focus:border-brand-400 focus:outline-none focus:ring-4 focus:ring-brand-200/40;
+}
+@utility dark-input {
+  @apply w-full rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white transition placeholder:text-brand-100/40 focus:border-brand-400/60 focus:outline-none focus:ring-4 focus:ring-brand-400/20;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 
 @utility text-balance {
   text-wrap: balance;
