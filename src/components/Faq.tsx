@@ -66,7 +66,7 @@ export function Faq() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="px-5 pb-5 text-sm leading-relaxed text-ink-800/75">
+                      <p className="px-5 pb-5 sm:pl-17 text-sm leading-relaxed text-ink-800/75">
                         {f.a}
                       </p>
                     </div>
