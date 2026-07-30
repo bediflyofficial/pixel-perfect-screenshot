@@ -178,7 +178,7 @@ export const TUTORS: Tutor[] = [
     name: 'Ms. Profi',
     role: 'Spoken English Trainer',
     note: 'Trained 800+ students',
-    img: '',
+    img: profiAsset.url,
   },
   {
     name: 'Ms. Fatema',
