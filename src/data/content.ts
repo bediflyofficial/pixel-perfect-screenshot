@@ -1,5 +1,6 @@
 import founderAsset from '@/assets/founder.png.asset.json';
 import fatemaAsset from '@/assets/fatema.jpg.asset.json';
+import communityAsset from '@/assets/community.jpg.asset.json';
 import {
   Video,
   UserRound,
@@ -276,7 +277,7 @@ export const GALLERY: GalleryItem[] = [
 ];
 
 export const HERO_IMG = founderAsset.url;
-export const COMMUNITY_IMG = fatemaAsset.url;
+export const COMMUNITY_IMG = communityAsset.url;
 export const FOUNDER_IMG = founderAsset.url;
 
 export const CONTACTS = {
