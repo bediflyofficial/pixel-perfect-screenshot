@@ -8,8 +8,10 @@ import {
   Phone,
   Mail,
   ArrowRight,
+  CalendarCheck,
+  MessageCircle,
 } from 'lucide-react';
-import { STATS, HERO_IMG } from '@/data/content';
+import { STATS, HERO_IMG, CONTACTS } from '@/data/content';
 import { useReveal } from '@/hooks/useReveal';
 import { submitLead } from '@/lib/supabase';
 
@@ -34,7 +36,7 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
         phone: String(data.get('phone') ?? '').trim(),
         email: String(data.get('email') ?? '').trim() || null,
         message: `Age: ${age} • City: ${city}`,
-        interest: '₹99 Demo Class',
+        interest: 'Demo Class',
         source: 'hero-form',
       });
       setStatus('success');
@@ -59,7 +61,7 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
       <div className="absolute -top-32 right-[-10%] -z-10 h-[28rem] w-[28rem] rounded-full bg-brand-200/50 blur-3xl" />
       <div className="absolute top-40 left-[-15%] -z-10 h-[24rem] w-[24rem] rounded-full bg-gold-200/40 blur-3xl" />
 
-      <div className="container-px grid items-start gap-12 pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:pb-28">
+      <div className="container-px grid items-start gap-12 pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pb-28">
         <div className="reveal">
           <h1 className="text-balance text-4xl font-extrabold leading-[1.05] text-ink-900 sm:text-5xl lg:text-6xl">
             Master Fluent English with{' '}
@@ -107,17 +109,21 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
             </div>
           </div>
 
-          <div className="relative mt-10 max-w-xl">
+          <div className="relative mx-auto mt-12 w-full max-w-md lg:mx-0">
+            <div className="absolute -inset-3 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand-200/60 to-gold-200/50 blur-2xl" />
             <div className="overflow-hidden rounded-[2rem] border-4 border-white bg-white shadow-lift">
               <img
                 src={HERO_IMG}
-                alt="Student attending a live online English class"
-                className="aspect-[5/4] w-full object-cover"
+                alt="Dr. Meenu Ganju, founder and lead coach at EDUVATEE"
+                className="aspect-[3/4] w-full object-cover object-top"
+                width={1072}
+                height={1429}
                 loading="eager"
+                fetchPriority="high"
               />
             </div>
 
-            <div className="absolute -left-2 top-6 animate-float rounded-2xl border border-black/5 bg-white p-3 shadow-lift sm:-left-6">
+            <div className="absolute -left-2 top-8 animate-float rounded-2xl border border-black/5 bg-white p-3 shadow-lift sm:-left-6">
               <div className="flex items-center gap-2">
                 <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-50 text-brand-600">
                   <ShieldCheck className="h-5 w-5" />
@@ -135,14 +141,14 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
           </div>
         </div>
 
-        <div className="reveal lg:sticky lg:top-28">
+        <div id="demo-form" className="reveal scroll-mt-28 lg:sticky lg:top-28">
           <div className="overflow-hidden rounded-[2rem] border border-black/5 bg-white shadow-lift">
             <div className="bg-gradient-to-br from-brand-600 to-brand-800 px-6 py-6 text-white sm:px-8">
               <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-100">
                 Limited seats available
               </span>
               <h2 className="mt-2 text-2xl font-extrabold sm:text-3xl">
-                Book your ₹99 Demo Class
+                Book Your Demo Class
               </h2>
               <p className="mt-1 text-sm text-brand-100">
                 Experience a real class before you commit — no pressure.
@@ -150,22 +156,57 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
             </div>
 
             {status === 'success' ? (
-              <div className="px-6 py-12 text-center sm:px-8">
-                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">
-                  <CheckCircle2 className="h-8 w-8" />
+              <div className="px-6 py-10 sm:px-8">
+                <div className="text-center">
+                  <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">
+                    <CheckCircle2 className="h-8 w-8" />
+                  </div>
+                  <h3 className="mt-5 text-xl font-bold text-ink-900">
+                    Thank you — your demo request is confirmed!
+                  </h3>
+                  <p className="mx-auto mt-2 max-w-sm text-sm text-ink-800/70">
+                    A learning advisor from EDUVATEE will contact you within 24
+                    hours to schedule your personalized demo class.
+                  </p>
                 </div>
-                <h3 className="mt-5 text-xl font-bold text-ink-900">
-                  Request received!
-                </h3>
-                <p className="mx-auto mt-2 max-w-sm text-sm text-ink-800/70">
-                  Our team will call you shortly to confirm your demo slot.
-                </p>
-                <button
-                  onClick={() => setStatus('idle')}
-                  className="btn-ghost mt-6"
-                >
-                  Book another slot
-                </button>
+
+                <div className="mt-7 space-y-3 rounded-2xl bg-brand-50/60 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-700">
+                    What happens next
+                  </p>
+                  <ul className="space-y-2.5 text-sm text-ink-800/80">
+                    <li className="flex items-start gap-2.5">
+                      <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-600" />
+                      Our team calls you to understand your goals and level.
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CalendarCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-600" />
+                      We schedule your 1-on-1 demo class at a time that suits
+                      you.
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Users className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-600" />
+                      You meet your tutor and get a personalized learning plan.
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
+                  <a
+                    href={CONTACTS.whatsapp}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-primary flex-1 justify-center"
+                  >
+                    <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
+                  </a>
+                  <button
+                    onClick={() => setStatus('idle')}
+                    className="btn-ghost flex-1 justify-center"
+                  >
+                    Book another slot
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="px-6 py-6 sm:px-8">
@@ -193,7 +234,7 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
                       required
                       autoComplete="tel"
                       maxLength={20}
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 63573 48400"
                       className="lead-input"
                     />
                   </HeroField>
@@ -251,7 +292,7 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
                     </>
                   ) : (
                     <>
-                      Book my ₹99 Demo Class
+                      Book Your Demo Class
                       <ArrowRight className="h-4 w-4" />
                     </>
                   )}

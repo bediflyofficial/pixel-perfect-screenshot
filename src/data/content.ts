@@ -1,3 +1,5 @@
+import founderAsset from '@/assets/founder.png.asset.json';
+import fatemaAsset from '@/assets/fatema.jpg.asset.json';
 import {
   Video,
   UserRound,
@@ -22,7 +24,7 @@ export const STATS = [
   { value: '12,000+', label: 'Students coached' },
   { value: '4.9/5', label: 'Average rating' },
   { value: '1-on-1', label: 'Live sessions' },
-  { value: '₹99', label: 'Demo class' },
+  { value: 'Free', label: 'Demo class' },
 ];
 
 export type Feature = { icon: LucideIcon; title: string; desc: string };
@@ -162,27 +164,25 @@ export const IELTS_PLANS: Plan[] = [
   },
 ];
 
-export type Tutor = { name: string; role: string; img: string };
+export type Tutor = { name: string; role: string; note: string; img: string };
 export const TUTORS: Tutor[] = [
   {
     name: 'Dr. Meenu Ganju',
-    role: 'Founder & Lead Coach',
-    img: '/images/ChatGPT_Image_Jul_29,_2026,_04_24_27_PM.png',
+    role: 'Founder · Digital Marketing & AI Trainer',
+    note: 'Trained 1000+ students',
+    img: founderAsset.url,
   },
   {
-    name: 'Aarav Mehta',
-    role: 'Fluency & Speaking Coach',
-    img: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600&h=720&fit=crop',
+    name: 'Ms. Profi',
+    role: 'Spoken English Trainer',
+    note: 'Trained 800+ students',
+    img: '',
   },
   {
-    name: 'Sara Khan',
-    role: 'IELTS Specialist',
-    img: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=600&h=720&fit=crop',
-  },
-  {
-    name: 'Rohan Verma',
-    role: 'Communication & Soft Skills',
-    img: 'https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?auto=compress&cs=tinysrgb&w=600&h=720&fit=crop',
+    name: 'Ms. Fatema',
+    role: 'Certified English Trainer',
+    note: 'Trained 800+ students',
+    img: fatemaAsset.url,
   },
 ];
 
@@ -234,58 +234,55 @@ export const REVIEWS: Review[] = [
 export type Faq = { q: string; a: string };
 export const FAQS: Faq[] = [
   {
-    q: 'How long are the courses?',
-    a: 'The duration ranges from 1 to 6 months, depending on your specific requirements and learning goals.',
+    q: 'What is the duration of the spoken English course?',
+    a: 'The duration of the course ranges from 1 to 6 months, depending on your specific requirements and learning goals.',
   },
   {
-    q: 'Do I need to be fluent already to join?',
-    a: 'No. We offer courses for beginners, intermediate, and advanced learners, so you can join based on your current proficiency level.',
+    q: 'Do I need to know any English before joining?',
+    a: 'No, we offer courses for beginners, intermediate, and advanced learners, so you can join based on your current proficiency level.',
   },
   {
-    q: 'What do I need to attend sessions?',
-    a: 'You will need a laptop or mobile device with a stable internet connection. Sessions are held entirely online.',
+    q: 'What do I need for the course?',
+    a: 'You will need a laptop or mobile device with a stable internet connection.',
   },
   {
-    q: 'Are the sessions really personalized?',
-    a: 'Yes. Sessions are fully personalized and conducted one-on-one, tailored to your pace and goals.',
+    q: 'How are the classes conducted?',
+    a: 'The sessions are fully personalized, conducted one-on-one, and held entirely online.',
   },
   {
-    q: 'Do you offer group sessions too?',
-    a: 'Although core sessions are one-on-one, we run complimentary group sessions regularly so you can practice speaking in front of a larger audience and build public-speaking confidence.',
+    q: 'With one-on-one sessions, how can I improve my public speaking?',
+    a: 'Although the sessions are one-on-one, we also conduct complimentary group sessions regularly. These allow you to practice speaking in front of a larger audience and enhance your public speaking skills.',
   },
   {
-    q: 'Can I try a class before committing?',
-    a: 'Yes. We offer a demo class for just ₹99 so you can experience the teaching style, atmosphere, and learning environment before committing to a course.',
+    q: 'Do I get a trial before enrolling?',
+    a: 'Yes, we offer a Demo Class before enrollment. It allows you to experience the teaching style, atmosphere, and learning environment before committing to the course.',
   },
   {
-    q: 'What if I do not connect with my tutor?',
-    a: 'You will have a dedicated tutor for the entire course. If you are not comfortable with your assigned tutor, we are happy to assign an alternative that better suits your needs.',
+    q: 'Will I have the same tutor throughout the entire course, or will it change?',
+    a: "You will have a dedicated tutor for the entire course. However, if you're not comfortable with your assigned tutor, we're happy to assign an alternative that better suits your needs.",
   },
   {
-    q: 'What skills do you train me in?',
-    a: 'We train you in all aspects of communication — speaking, listening, and writing — plus specialized training in interview preparation, professional communication, and soft-skills development.',
+    q: 'Will I be trained solely in spoken English, or are other areas covered as well?',
+    a: 'We train you in all aspects of communication, including speaking, listening, and writing. Additionally, we offer specialized training in interview preparation, professional communication, and soft skills development.',
   },
 ];
 
-export const GALLERY = [
-  'https://images.pexels.com/photos/5905709/pexels-photo-5905709.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop',
-  'https://images.pexels.com/photos/5905749/pexels-photo-5905749.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop',
-  'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop',
-  'https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop',
-  'https://images.pexels.com/photos/4226256/pexels-photo-4226256.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop',
-  'https://images.pexels.com/photos/6147369/pexels-photo-6147369.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop',
+export type GalleryItem = { src: string; alt: string };
+export const GALLERY: GalleryItem[] = [
+  {
+    src: fatemaAsset.url,
+    alt: 'Live one-on-one EDUVATEE spoken English session',
+  },
 ];
 
-export const HERO_IMG =
-  'https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=1100&h=1200&fit=crop';
-export const COMMUNITY_IMG =
-  'https://images.pexels.com/photos/5905749/pexels-photo-5905749.jpeg?auto=compress&cs=tinysrgb&w=1100&h=900&fit=crop';
-export const FOUNDER_IMG = '/images/ChatGPT_Image_Jul_29,_2026,_04_24_27_PM.png';
+export const HERO_IMG = founderAsset.url;
+export const COMMUNITY_IMG = fatemaAsset.url;
+export const FOUNDER_IMG = founderAsset.url;
 
 export const CONTACTS = {
-  phone: '+91 98765 43210',
-  email: 'hello@eduvatee.com',
-  whatsapp: 'https://wa.me/919876543210',
+  phone: '+91 63573 48400',
+  email: 'support@eduvatee.com',
+  whatsapp: 'https://wa.me/916357348400',
   instagram: 'https://instagram.com',
   youtube: 'https://youtube.com',
   linkedin: 'https://linkedin.com',
