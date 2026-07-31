@@ -37,3 +37,8 @@ externalPort = 5000
 [[ports]]
 localPort = 8080
 externalPort = 80
+
+[userenv]
+
+[userenv.shared]
+GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzFm7gCFdFsMR1umkpPcthrc2sfo-eYiAcgRvx4NTK3v4JwVNzABaKNVtidEgj4XO0lQg/exec"
