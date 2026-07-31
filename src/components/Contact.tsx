@@ -36,6 +36,8 @@ export function Contact() {
       await submitLead({
         name: String(data.get('name') ?? '').trim(),
         phone: String(data.get('phone') ?? '').trim(),
+        age,
+        city,
         email: String(data.get('email') ?? '').trim() || null,
         message: `Age: ${age} • City: ${city}`,
         interest: 'Demo Class',

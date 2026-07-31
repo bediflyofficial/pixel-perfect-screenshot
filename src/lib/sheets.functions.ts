@@ -4,9 +4,10 @@ import { z } from "zod";
 const leadSchema = z.object({
   name: z.string().min(1).max(200),
   phone: z.string().min(1).max(50),
+  age: z.string().max(10).optional().nullable(),
+  city: z.string().max(100).optional().nullable(),
   email: z.string().max(200).optional().nullable(),
   interest: z.string().max(200).optional().nullable(),
-  message: z.string().max(2000).optional().nullable(),
   source: z.string().max(100).optional().nullable(),
 });
 
@@ -19,9 +20,10 @@ export const sendLeadToSheet = createServerFn({ method: "POST" })
     const payload = JSON.stringify({
       name: data.name,
       phone: data.phone,
+      age: data.age ?? "",
+      city: data.city ?? "",
       email: data.email ?? "",
       interest: data.interest ?? "",
-      message: data.message ?? "",
       source: data.source ?? "landing",
     });
 

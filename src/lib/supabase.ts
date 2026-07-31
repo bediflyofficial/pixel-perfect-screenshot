@@ -1,10 +1,11 @@
 import { supabase } from "@/integrations/supabase/client";
 import { sendLeadToSheet } from "@/lib/sheets.functions";
 
-
 export type Lead = {
   name: string;
   phone: string;
+  age?: string | null;
+  city?: string | null;
   email?: string | null;
   interest?: string | null;
   message?: string | null;
@@ -28,9 +29,10 @@ export async function submitLead(lead: Lead) {
       data: {
         name: lead.name,
         phone: lead.phone,
+        age: lead.age ?? "",
+        city: lead.city ?? "",
         email: lead.email ?? "",
         interest: lead.interest ?? "",
-        message: lead.message ?? "",
         source: lead.source ?? "landing",
       },
     });
