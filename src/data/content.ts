@@ -5,7 +5,7 @@ import class2 from '@/assets/class-image-10.png.asset.json';
 import class3 from '@/assets/class-image-11.png.asset.json';
 import class4 from '@/assets/class-image-12.png.asset.json';
 import profiAsset from '@/assets/profi.png.asset.json';
-import communityAsset from '@/assets/community.jpg.asset.json';
+import communityAsset from '@/assets/community-new.png.asset.json';
 import {
   Video,
   UserRound,
