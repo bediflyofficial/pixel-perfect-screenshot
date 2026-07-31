@@ -281,14 +281,14 @@ export const GALLERY: GalleryItem[] = [
   { src: class4.url, alt: 'EDUVATEE trainer coaching a learner live' },
 ];
 
-export const HERO_IMG = founderAsset.url;
+export const HERO_IMG = '/assets/hero-desk.png';
 export const COMMUNITY_IMG = communityAsset.url;
 export const FOUNDER_IMG = founderAsset.url;
 
 export const CONTACTS = {
   phone: '+91 63573 48400',
   email: 'support@eduvatee.com',
-  whatsapp: 'https://wa.me/916357348400',
+  whatsapp: 'https://wa.link/35ukxk',
   instagram: 'https://instagram.com',
   youtube: 'https://youtube.com',
   linkedin: 'https://linkedin.com',

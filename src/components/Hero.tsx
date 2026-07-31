@@ -117,9 +117,9 @@ export function Hero({ onBookDemo }: { onBookDemo: () => void }) {
               <img
                 src={HERO_IMG}
                 alt="Dr. Meenu Ganju, founder and lead coach at EDUVATEE"
-                className="aspect-[3/4] w-full object-cover object-top"
-                width={1072}
-                height={1429}
+                className="aspect-[4/3] w-full object-cover object-center"
+                width={1200}
+                height={900}
                 loading="eager"
                 fetchPriority="high"
               />
