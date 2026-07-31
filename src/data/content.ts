@@ -30,7 +30,7 @@ export const STATS = [
   { value: '12,000+', label: 'Students coached' },
   { value: '4.9/5', label: 'Average rating' },
   { value: '1-on-1', label: 'Live sessions' },
-  { value: 'Free', label: 'Demo class' },
+  { value: '1×', label: 'Demo class' },
 ];
 
 export type Feature = { icon: LucideIcon; title: string; desc: string };

@@ -17,8 +17,8 @@ export function DemoBanner({ onBookDemo }: { onBookDemo: () => void }) {
                 <Sparkles className="h-3.5 w-3.5" /> Try before you commit
               </span>
               <h2 className="mt-4 text-balance text-2xl font-extrabold leading-tight sm:text-3xl">
-                Experience a real class with a{' '}
-                <span className="text-gold-300">free demo</span>
+                Experience a real class —{' '}
+                <span className="text-gold-300">book your demo</span>
               </h2>
               <p className="mt-2 text-sm text-brand-100/85 sm:text-base">
                 Feel the teaching style, atmosphere, and learning environment

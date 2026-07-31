@@ -61,7 +61,7 @@ export function Community({ onBookDemo }: { onBookDemo: () => void }) {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <button onClick={onBookDemo} className="btn-primary">
-                Start with a free demo class
+                Start with a demo class
               </button>
               <a href="#reviews" className="btn-ghost">
                 Read more reviews
