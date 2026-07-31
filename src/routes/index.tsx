@@ -63,10 +63,10 @@ function Index() {
       <main>
         <Hero onBookDemo={scrollToDemoForm} />
         <Features />
-        <Packages onBookDemo={(interest) => openPlan(interest)} />
+        <Packages onBookDemo={scrollToDemoForm} />
         <DemoBanner onBookDemo={scrollToDemoForm} />
         <Community onBookDemo={scrollToDemoForm} />
-        <IELTS onBookDemo={(interest) => openPlan(interest)} />
+        <IELTS onBookDemo={scrollToDemoForm} />
         <Founder onBookDemo={scrollToDemoForm} />
         <Tutors onBookDemo={scrollToDemoForm} />
         <Reviews />
