@@ -258,6 +258,14 @@ export function Contact() {
                     )}
                   </button>
 
+                  <a
+                    href="tel:+916357348400"
+                    className="btn-ghost mt-3 w-full justify-center"
+                  >
+                    <Phone className="h-4 w-4 text-brand-600" />
+                    Call now +91 6357348400
+                  </a>
+
                   <p className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-ink-800/60">
                     <span className="inline-flex items-center gap-1">
                       <Phone className="h-3.5 w-3.5" /> We'll call you back within 24 hours
