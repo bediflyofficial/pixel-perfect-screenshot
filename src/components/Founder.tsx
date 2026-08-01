@@ -3,7 +3,7 @@ import { FOUNDER_IMG } from '@/data/content';
 import { useReveal } from '@/hooks/useReveal';
 
 const CREDS = [
-  'PhD in Applied Linguistics',
+  'MBA',
   '15+ years coaching learners',
   'Certified IELTS trainer',
   'Mentored 12,000+ students',
