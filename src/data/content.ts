@@ -167,7 +167,7 @@ export const IELTS_PLANS: Plan[] = [
     features: [
       '6 Month Plan',
       '72 sessions',
-      'Each session is 30 minutes',
+      'Each session is 60 minutes',
       'One-on-one sessions',
       'Flexibility in selecting days and time',
       '12 mock tests',
