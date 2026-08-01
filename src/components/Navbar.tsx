@@ -9,11 +9,8 @@ export function Navbar({ onBookDemo }: { onBookDemo: () => void }) {
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto mt-3 w-full max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between rounded-2xl border border-black/5 bg-white/80 px-4 py-2.5 shadow-soft backdrop-blur-xl sm:px-5">
-          <a href="#home" className="flex items-center gap-2.5">
+          <a href="#home" className="flex items-center">
             <Logo />
-            <span className="font-display text-lg font-extrabold tracking-tight text-ink-900">
-              EDU<span className="text-brand-600">VATEE</span>
-            </span>
           </a>
 
           <nav className="hidden items-center gap-1 lg:flex">
@@ -82,20 +79,10 @@ export function Navbar({ onBookDemo }: { onBookDemo: () => void }) {
 
 function Logo() {
   return (
-    <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-soft">
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-        <path
-          d="M3 7l9-4 9 4-9 4-9-4z"
-          fill="currentColor"
-          opacity="0.95"
-        />
-        <path
-          d="M7 11v5c0 1 2.2 2.5 5 2.5s5-1.5 5-2.5v-5"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-        />
-      </svg>
-    </span>
+    <img
+      src="/logo.png"
+      alt="Eduvatee — Road to Excel"
+      className="h-12 w-auto"
+    />
   );
 }

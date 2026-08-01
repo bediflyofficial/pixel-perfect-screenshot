@@ -13,41 +13,44 @@
   --font-sans: "Inter", system-ui, sans-serif;
   --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
 
-  --color-ink-950: #06201d;
-  --color-ink-900: #0a2a26;
-  --color-ink-800: #103a34;
-  --color-ink-700: #1a4f47;
+  /* Navy/teal — derived from logo background #1B5277 */
+  --color-ink-950: #060d1c;
+  --color-ink-900: #0d1830;
+  --color-ink-800: #142440;
+  --color-ink-700: #1c3154;
 
-  --color-brand-50: #ecfdf7;
-  --color-brand-100: #d1faec;
-  --color-brand-200: #a7f3da;
-  --color-brand-300: #6ee7c0;
-  --color-brand-400: #34d3a3;
-  --color-brand-500: #10b886;
-  --color-brand-600: #059469;
-  --color-brand-700: #047555;
-  --color-brand-800: #065d46;
-  --color-brand-900: #064d3b;
-  --color-brand-950: #022c22;
+  /* Brand — teal/navy family */
+  --color-brand-50: #edf5fb;
+  --color-brand-100: #d0e8f5;
+  --color-brand-200: #a3d0eb;
+  --color-brand-300: #6aafd9;
+  --color-brand-400: #3a8dc3;
+  --color-brand-500: #1e6fa8;
+  --color-brand-600: #195a8c;
+  --color-brand-700: #1b5277;
+  --color-brand-800: #144162;
+  --color-brand-900: #0f3250;
+  --color-brand-950: #091e31;
 
-  --color-gold-50: #fffaeb;
-  --color-gold-100: #fff1c6;
-  --color-gold-200: #ffe188;
-  --color-gold-300: #ffcb4a;
-  --color-gold-400: #ffb31f;
-  --color-gold-500: #f89500;
-  --color-gold-600: #db6f00;
-  --color-gold-700: #b74e02;
-  --color-gold-800: #943906;
-  --color-gold-900: #7a2f08;
-  --color-gold-950: #461602;
+  /* Gold/orange — derived from logo triangle #E8631B */
+  --color-gold-50: #fff4ee;
+  --color-gold-100: #ffe5d4;
+  --color-gold-200: #ffcaaa;
+  --color-gold-300: #ffab78;
+  --color-gold-400: #ff8040;
+  --color-gold-500: #f06020;
+  --color-gold-600: #e8531a;
+  --color-gold-700: #c44014;
+  --color-gold-800: #9e3312;
+  --color-gold-900: #7e2b13;
+  --color-gold-950: #441509;
 
   --shadow-soft:
-    0 2px 8px -2px rgb(6 32 29 / 0.08), 0 4px 24px -4px rgb(6 32 29 / 0.1);
+    0 2px 8px -2px rgb(8 14 28 / 0.08), 0 4px 24px -4px rgb(8 14 28 / 0.1);
   --shadow-lift:
-    0 12px 40px -12px rgb(6 32 29 / 0.22), 0 4px 16px -4px rgb(6 32 29 / 0.12);
+    0 12px 40px -12px rgb(8 14 28 / 0.22), 0 4px 16px -4px rgb(8 14 28 / 0.12);
   --shadow-glow:
-    0 0 0 1px rgb(16 184 134 / 0.18), 0 16px 50px -12px rgb(16 184 134 / 0.45);
+    0 0 0 1px rgb(30 111 168 / 0.18), 0 16px 50px -12px rgb(30 111 168 / 0.45);
 
   --radius-4xl: 2rem;
 
@@ -144,26 +147,26 @@
 
 :root {
   --radius: 0.625rem;
-  --bg: #f7f8f6;
-  --background: oklch(0.977 0.004 145);
-  --foreground: oklch(0.28 0.045 172);
+  --bg: #f5f7fb;
+  --background: oklch(0.977 0.006 225);
+  --foreground: oklch(0.22 0.04 225);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.28 0.045 172);
+  --card-foreground: oklch(0.22 0.04 225);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.28 0.045 172);
-  --primary: oklch(0.58 0.12 165);
-  --primary-foreground: oklch(0.99 0.01 160);
-  --secondary: oklch(0.96 0.02 165);
-  --secondary-foreground: oklch(0.32 0.05 170);
-  --muted: oklch(0.96 0.01 160);
-  --muted-foreground: oklch(0.55 0.03 170);
-  --accent: oklch(0.83 0.15 82);
-  --accent-foreground: oklch(0.28 0.045 172);
+  --popover-foreground: oklch(0.22 0.04 225);
+  --primary: oklch(0.47 0.11 225);
+  --primary-foreground: oklch(0.99 0.005 225);
+  --secondary: oklch(0.96 0.02 225);
+  --secondary-foreground: oklch(0.30 0.05 225);
+  --muted: oklch(0.96 0.01 225);
+  --muted-foreground: oklch(0.55 0.03 225);
+  --accent: oklch(0.75 0.18 46);
+  --accent-foreground: oklch(0.22 0.04 225);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.99 0.01 160);
-  --border: oklch(0.9 0.015 165);
-  --input: oklch(0.9 0.015 165);
-  --ring: oklch(0.7 0.11 165);
+  --border: oklch(0.90 0.015 225);
+  --input: oklch(0.90 0.015 225);
+  --ring: oklch(0.55 0.11 225);
 }
 
 @layer base {
@@ -181,7 +184,7 @@
   body {
     font-family: var(--font-sans);
     background: var(--bg);
-    color: #0a2a26;
+    color: #0d1830;
   }
 
   h1,
@@ -193,7 +196,7 @@
   }
 
   ::selection {
-    background: #10b886;
+    background: #1b5277;
     color: #fff;
   }
 }
@@ -252,8 +255,8 @@
 
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, rgb(16 184 134 / 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(16 184 134 / 0.07) 1px, transparent 1px);
+    linear-gradient(to right, rgb(30 111 168 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(30 111 168 / 0.07) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 
