@@ -14,7 +14,9 @@ const leadSchema = z.object({
 export const sendLeadToSheet = createServerFn({ method: "POST" })
   .validator((data: unknown) => leadSchema.parse(data))
   .handler(async ({ data }) => {
-    const url = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+    const url =
+      process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
+      "https://script.google.com/macros/s/AKfycbwHvChzdK1fnB0HeHKcTSJkDcsOoqktlGMfuZjb6IfJp-NQEz4rMHJkFj5jDMkqYh1F/exec";
     if (!url) {
       console.error("[Sheets] GOOGLE_SHEETS_WEBHOOK_URL is not set");
       throw new Error("Google Sheets webhook is not configured.");
