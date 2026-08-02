@@ -1,4 +1,3 @@
-import { supabase } from "@/integrations/supabase/client";
 import { sendLeadToSheet } from "@/lib/sheets.functions";
 
 export type Lead = {
@@ -13,30 +12,38 @@ export type Lead = {
 };
 
 export async function submitLead(lead: Lead) {
-  const { error } = await supabase.from("leads").insert({
-    name: lead.name,
-    phone: lead.phone,
-    email: lead.email ?? null,
-    interest: lead.interest ?? null,
-    message: lead.message ?? null,
-    source: lead.source ?? "landing",
-  });
-  if (error) throw error;
+  // Try Supabase if credentials are configured; skip silently if not.
+  const supabaseUrl =
+    (typeof import.meta !== "undefined" && import.meta.env?.VITE_SUPABASE_URL) ||
+    (typeof process !== "undefined" && process.env?.SUPABASE_URL);
 
-  // Mirror the lead into the Google Sheet (non-blocking failure)
-  try {
-    await sendLeadToSheet({
-      data: {
+  if (supabaseUrl) {
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      const { error } = await supabase.from("leads").insert({
         name: lead.name,
         phone: lead.phone,
-        age: lead.age ?? "",
-        city: lead.city ?? "",
-        email: lead.email ?? "",
-        interest: lead.interest ?? "",
+        email: lead.email ?? null,
+        interest: lead.interest ?? null,
+        message: lead.message ?? null,
         source: lead.source ?? "landing",
-      },
-    });
-  } catch {
-    // ignore sheet errors so the user still sees success
+      });
+      if (error) console.warn("[Supabase] insert error:", error.message);
+    } catch (err) {
+      console.warn("[Supabase] unavailable, skipping:", err);
+    }
   }
+
+  // Google Sheet is the primary capture — always attempt it.
+  await sendLeadToSheet({
+    data: {
+      name: lead.name,
+      phone: lead.phone,
+      age: lead.age ?? "",
+      city: lead.city ?? "",
+      email: lead.email ?? "",
+      interest: lead.interest ?? "",
+      source: lead.source ?? "landing",
+    },
+  });
 }
