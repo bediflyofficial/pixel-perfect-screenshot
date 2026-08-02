@@ -12,10 +12,13 @@ const leadSchema = z.object({
 });
 
 export const sendLeadToSheet = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => leadSchema.parse(data))
+  .validator((data: unknown) => leadSchema.parse(data))
   .handler(async ({ data }) => {
     const url = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
-    if (!url) return { ok: false as const };
+    if (!url) {
+      console.error("[Sheets] GOOGLE_SHEETS_WEBHOOK_URL is not set");
+      throw new Error("Google Sheets webhook is not configured.");
+    }
 
     const payload = JSON.stringify({
       name: data.name,
@@ -27,18 +30,24 @@ export const sendLeadToSheet = createServerFn({ method: "POST" })
       source: data.source ?? "landing",
     });
 
-    // Apps Script runs doPost at /exec and then 302s to a googleusercontent
-    // result page. The 302 itself means the script executed, so treat it as
-    // success and don't follow (the result page rejects POST).
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: payload,
-        redirect: "manual",
-      });
-      return { ok: res.ok || (res.status >= 300 && res.status < 400) };
-    } catch {
-      return { ok: false as const };
+    // Google Apps Script /exec responds with a 302 redirect to a result page.
+    // Using redirect:"manual" treats the 302 as success without following it
+    // (following a POST redirect causes a 405 on the result page).
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: payload,
+      redirect: "manual",
+    });
+
+    // 0 = opaque redirect (fetch with redirect:manual returns type "opaqueredirect")
+    // 302/303 = Google Apps Script redirect = script executed successfully
+    const ok = res.ok || res.status === 0 || (res.status >= 300 && res.status < 400);
+    if (!ok) {
+      console.error("[Sheets] Webhook returned unexpected status", res.status);
+      throw new Error(`Sheet webhook failed with status ${res.status}. Check your Apps Script deployment.`);
     }
+
+    console.log("[Sheets] Lead sent to Google Sheet, status:", res.status);
+    return { ok: true as const };
   });
